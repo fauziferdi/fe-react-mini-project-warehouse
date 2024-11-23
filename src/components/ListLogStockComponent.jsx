@@ -3,6 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchLogs } from "../redux/slices/logSlice";
 import FormStockComponent from "./FormStockComponent";
 import QrScannerComponent from "./QrScannerComponent";
+import dayjs from "dayjs";
+import "dayjs/locale/id";
+dayjs.locale("id");
 
 const ListLogStockComponent = () => {
   const dispatch = useDispatch();
@@ -100,7 +103,7 @@ const ListLogStockComponent = () => {
                 <td>{data.type}</td>
                 <td>{data.quantity}</td>
                 <td>{data.note}</td>
-                <td>{data.date}</td>
+                <td>{dayjs(data.date).format("DD MMMM YYYY HH:mm:ss")}</td>
               </tr>
             ))}
           </tbody>

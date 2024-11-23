@@ -3,11 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { addLog } from "../redux/slices/logSlice";
 import { stockInOutProduct, fetchProducts } from "../redux/slices/productSlice";
 import QrScannerComponent from "./QrScannerComponent";
+import Swal from "sweetalert2";
 
 const FormStockComponent = ({ setShowModal, showModal }) => {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.products);
-  const [formData, setFormData] = useState({
+  const [input, setInput] = useState({
     id: "",
     type: "stock_in",
     stock: "",
@@ -21,51 +22,74 @@ const FormStockComponent = ({ setShowModal, showModal }) => {
   }, [dispatch]);
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
+    setInput({
+      ...input,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleScan = (data) => {
+    setInput({ ...input, id: data });
+    setShowScanner(false);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const productExists = products.find(
-      (product) => product.id === formData.id
-    );
+    const productExists = products.find((product) => product.id === input.id);
+
     if (!productExists) {
       setValidationError("Product ID tidak ditemukan.");
       return;
     }
 
-    dispatch(
-      stockInOutProduct({
-        id: formData.id,
-        stockChange: parseInt(formData.stock),
-      })
-    );
-    dispatch(
-      addLog({
-        product_id: formData.id,
-        type: formData.type,
-        quantity: parseInt(formData.stock),
-        note: formData.note,
-        date: new Date().toISOString(),
-      })
-    );
+    const currentStock = products.find(
+      (product) => product.id === input.id
+    )?.stock;
 
-    setFormData({
-      id: "",
-      type: "stock_in",
-      stock: "",
-      note: "",
-    });
-    setShowModal(false);
-  };
+    const newStock =
+      input.type === "stock_in"
+        ? currentStock + parseInt(input.stock)
+        : currentStock - parseInt(input.stock);
 
-  const handleScan = (data) => {
-    setFormData({ ...formData, id: data });
-    setShowScanner(false);
+    try {
+      await dispatch(
+        stockInOutProduct({
+          id: input.id,
+          stockChange: newStock,
+        })
+      );
+      dispatch(
+        addLog({
+          product_id: input.id,
+          type: input.type,
+          quantity: parseInt(input.stock),
+          note: input.note,
+          date: new Date().toISOString(),
+        })
+      );
+
+      Swal.fire({
+        icon: "success",
+        title: "Stock berhasil diupdate!",
+        showConfirmButton: true,
+      });
+
+      setInput({
+        id: "",
+        type: "stock_in",
+        stock: "",
+        note: "",
+      });
+      setShowModal(false);
+    } catch (error) {
+      console.error("Error updating stock:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Terjadi kesalahan!",
+      });
+    }
   };
 
   return (
@@ -100,7 +124,7 @@ const FormStockComponent = ({ setShowModal, showModal }) => {
                     className="form-control"
                     id="id"
                     name="id"
-                    value={formData.id}
+                    value={input.id}
                     onChange={handleChange}
                     required
                   />
@@ -112,7 +136,6 @@ const FormStockComponent = ({ setShowModal, showModal }) => {
                     Scan QR
                   </button>
                   {showScanner && <QrScannerComponent onScan={handleScan} />}{" "}
-                
                 </div>
                 <div className="mb-3">
                   <label htmlFor="type" className="form-label">
@@ -122,7 +145,7 @@ const FormStockComponent = ({ setShowModal, showModal }) => {
                     name="type"
                     className="form-select"
                     id="type"
-                    value={formData.type}
+                    value={input.type}
                     onChange={handleChange}
                     required
                   >
@@ -139,7 +162,7 @@ const FormStockComponent = ({ setShowModal, showModal }) => {
                     className="form-control"
                     id="stock"
                     name="stock"
-                    value={formData.stock}
+                    value={input.stock}
                     onChange={handleChange}
                     required
                   />
@@ -154,7 +177,7 @@ const FormStockComponent = ({ setShowModal, showModal }) => {
                     id="note"
                     rows="3"
                     name="note"
-                    value={formData.note}
+                    value={input.note}
                     onChange={handleChange}
                     required
                   ></textarea>

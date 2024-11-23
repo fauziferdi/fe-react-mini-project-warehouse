@@ -5,7 +5,7 @@
       "name": "Wireless Mouse",
       "description": "Ergonomic wireless mouse with high precision.",
       "price": 150000,
-      "stock": 222
+      "stock": 203
     },
     {
       "id": "21321321321",
@@ -15,34 +15,14 @@
       "stock": 111
     },
     {
-      "id": "213213213212",
-      "name": "Penghapus Mahesa",
-      "description": "Penghawus color white",
-      "price": 100,
-      "stock": 88
-    },
-    {
-      "id": "8993176721928",
-      "name": "Minyak telon",
-      "description": "Minyak para adek",
-      "price": 20000,
-      "stock": 100
-    },
-    {
-      "id": "1234567890ABCDEFG",
-      "name": "Car will g27",
-      "description": "Car toy version 2.4",
-      "price": 45000,
-      "stock": 40
-    },
-    {
-      "id": "012345678905",
-      "name": "Ban montor honda",
-      "description": "Honda montor",
-      "price": 20000,
-      "stock": 20
+      "id": "18998866605813",
+      "name": "Tipe x 226",
+      "description": "Tipe-x warna putih",
+      "price": 3000,
+      "stock": 190
     }
   ],
+
   "logs": [
     {
       "id": "1",
@@ -53,52 +33,20 @@
       "date": "2024-11-22T10:00:00Z"
     },
     {
-      "id": "0e9b",
-      "product_id": "8992745120651",
-      "type": "stock_out",
-      "quantity": 20,
-      "note": "Restocking warehouse",
-      "date": "2024-11-22T14:00:00Z"
-    },
-    {
-      "id": "6486",
-      "product_id": "1234567890ABCDEFG",
-      "type": "stock_in",
-      "quantity": 400,
-      "note": "Tambahan supply",
-      "date": "2024-11-23T19:14:56.442Z"
-    },
-    {
-      "id": "3369",
-      "product_id": "1234567890ABCDEFG",
-      "type": "stock_in",
-      "quantity": 466,
-      "note": "Masuk barang",
-      "date": "2024-11-23T19:19:55.119Z"
-    },
-    {
-      "id": "15e4",
-      "product_id": "1234567890ABCDEFG",
-      "type": "stock_out",
-      "quantity": 40,
-      "note": "Stok berkurang",
-      "date": "2024-11-23T19:22:19.395Z"
-    },
-    {
-      "id": "5bbd",
-      "product_id": "012345678905",
-      "type": "stock_in",
-      "quantity": 20,
-      "note": "Barang masuk",
-      "date": "2024-11-23T19:24:13.375Z"
-    },
-    {
       "id": "9d50",
       "product_id": "012345678905",
       "type": "stock_in",
       "quantity": 20,
       "note": "Masuk",
       "date": "2024-11-23T19:24:55.818Z"
+    },
+    {
+      "id": "82f8",
+      "product_id": "18998866605813",
+      "type": "stock_in",
+      "quantity": 10,
+      "note": "Stock masuk dari supplier",
+      "date": "2024-11-24T01:10:33.627Z"
     }
   ]
 }

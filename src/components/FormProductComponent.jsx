@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addProduct, updateProduct } from "../redux/slices/productSlice";
 import QrScannerComponent from "./QrScannerComponent";
+import Swal from "sweetalert2";
 
 const FormProductComponent = ({ setShowModal, showModal }) => {
   const dispatch = useDispatch();
@@ -50,28 +51,45 @@ const FormProductComponent = ({ setShowModal, showModal }) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      if (isUpdate) {
+        await dispatch(updateProduct({ id: product.id, product: input })); // Tunggu dispatch selesai
+        Swal.fire({
+          icon: "success",
+          title: "Data berhasil diupdate!",
+          showConfirmButton: true,
+        });
+      } else {
+        await dispatch(addProduct(input));
+        Swal.fire({
+          icon: "success",
+          title: "Data berhasil ditambahkan!",
+          showConfirmButton: true,
+        });
+      }
 
-    if (isUpdate) {
-      dispatch(updateProduct({ id: product.id, product: input }));
-    } else {
-      dispatch(addProduct(input));
+      setShowModal(false);
+      setInput({
+        id: "",
+        name: "",
+        description: "",
+        price: "",
+        stock: "",
+      });
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Terjadi kesalahan!",
+      });
     }
-
-    setShowModal(false);
-    setInput({
-      id: "",
-      name: "",
-      description: "",
-      price: "",
-      stock: "",
-    });
   };
 
   const handleScan = (data) => {
-    setInput({ ...input, id: data }); 
-    setShowScanner(false); 
+    setInput({ ...input, id: data });
+    setShowScanner(false);
   };
 
   return (

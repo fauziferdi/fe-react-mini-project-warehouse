@@ -8,6 +8,7 @@ import {
 import FormProductComponent from "./FormProductComponent";
 import QrScannerComponent from "./QrScannerComponent";
 import { BiPencil, BiTrash } from "react-icons/bi";
+import Swal from "sweetalert2";
 
 const ListProductsComponent = () => {
   const dispatch = useDispatch();
@@ -48,6 +49,22 @@ const ListProductsComponent = () => {
   const handleScan = (data) => {
     setSearchTerm(data);
     setShowScanner(false);
+  };
+
+  const handleDeleteProduct = (id) => {
+    Swal.fire({
+      title: "Apakah Anda yakin?",
+      text: "Menghapus data produk dengan id = " + id,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Ya",
+      cancelButtonText: "Batal",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteProduct(id));
+        Swal.fire("Terhapus!", "Produk telah dihapus.", "success");
+      }
+    });
   };
 
   return (
@@ -118,7 +135,7 @@ const ListProductsComponent = () => {
                     <BiPencil />
                   </button>
                   <button
-                    onClick={() => dispatch(deleteProduct(data.id))}
+                    onClick={() => handleDeleteProduct(data.id)}
                     className="btn btn-danger btn-sm ms-2 my-1"
                     type="button"
                   >
