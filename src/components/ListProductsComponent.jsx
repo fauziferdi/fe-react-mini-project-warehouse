@@ -1,15 +1,23 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchProducts } from "../redux/slices/productSlice";
+import { fetchProducts, deleteProduct } from "../redux/slices/productSlice";
 
 const ListProductsComponent = () => {
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.products.products);
+  const { products, loading, error } = useSelector((state) => state.products);
 
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <div className="card mt-4">
@@ -38,7 +46,7 @@ const ListProductsComponent = () => {
                 <td>{data.stock}</td>
                 <td>
                   <button
-                    onClick={() => dispatch(fetchProducts())}
+                    onClick={() => dispatch(deleteProduct(data.id))}
                     className="btn btn-danger"
                     type="button"
                   ></button>
