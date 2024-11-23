@@ -5,7 +5,7 @@ const NavbarComponent = () => {
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container">
-          <a className="navbar-brand" href="#">
+          <a className="navbar-brand" href="/">
             <img
               src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg"
               alt="Logo"
@@ -29,13 +29,13 @@ const NavbarComponent = () => {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
-                <a className="nav-link " aria-current="page" href="#">
+                <a className="nav-link " aria-current="page" href="/product">
                   All Product
                 </a>
               </li>
-              <li class="nav-item dropdown">
+              <li className="nav-item dropdown">
                 <a
-                  class="nav-link dropdown-toggle"
+                  className="nav-link dropdown-toggle"
                   href="#"
                   role="button"
                   data-bs-toggle="dropdown"
@@ -43,14 +43,19 @@ const NavbarComponent = () => {
                 >
                   Product in/out
                 </a>
-                <ul class="dropdown-menu">
+                <ul className="dropdown-menu">
                   <li>
-                    <a class="dropdown-item" href="#">
+                    <a className="dropdown-item" href="/stock">
+                      All Stock
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" href="/stock/stock_in">
                       Stock In
                     </a>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="#">
+                    <a className="dropdown-item" href="/stock/stock_out">
                       Stock Out
                     </a>
                   </li>

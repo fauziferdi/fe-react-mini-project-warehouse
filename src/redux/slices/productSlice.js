@@ -1,20 +1,12 @@
 import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_URL_PRODUCT = "https://hc0p0dtn-3000.asse.devtunnels.ms/products";
+const API_URL_PRODUCT = "http://localhost:3000/products";
 
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async () => {
     const response = await axios.get(API_URL_PRODUCT);
-    return response.data;
-  }
-);
-
-export const fetchProductById = createAsyncThunk(
-  "products/fetchProducts",
-  async (id) => {
-    const response = await axios.get(`${API_URL_PRODUCT}?id=${id}`);
     return response.data;
   }
 );
@@ -43,6 +35,17 @@ export const updateProduct = createAsyncThunk(
   }
 );
 
+export const stockInOutProduct = createAsyncThunk(
+  "products/stockInOutProduct",
+  async ({ id, stockChange }) => {
+    const response = await axios.patch(`${API_URL_PRODUCT}/${id}`, {
+      stock: stockChange,
+    });
+    console.log(response.data);
+    return response.data;
+  }
+);
+
 const initialState = {
   products: [],
   product: {},
@@ -62,6 +65,7 @@ const productSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    //fetch
     builder.addCase(fetchProducts.pending, (state) => {
       state.loading = true;
     });
@@ -118,6 +122,21 @@ const productSlice = createSlice({
     });
 
     builder.addCase(addProduct.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload || "Something went wrong";
+    });
+
+    //stockinout
+    builder.addCase(stockInOutProduct.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(stockInOutProduct.fulfilled, (state, action) => {
+      state.loading = false;
+      state.products = state.products.map((product) =>
+        product.id === action.payload.id ? action.payload : product
+      );
+    });
+    builder.addCase(stockInOutProduct.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload || "Something went wrong";
     });

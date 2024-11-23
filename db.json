@@ -5,7 +5,7 @@
       "name": "Wireless Mouse",
       "description": "Ergonomic wireless mouse with high precision.",
       "price": 150000,
-      "stock": 110
+      "stock": 100
     },
     {
       "id": "21321321321",
@@ -15,18 +15,59 @@
       "stock": 10
     },
     {
-      "id": "9789967081345",
+      "id": "213213213212",
       "name": "Penghapus Mahesa",
       "description": "Penghawus color white",
       "price": "1000",
-      "stock": "467"
+      "stock": 88
     },
     {
-      "id": "9578545203541",
-      "name": "Barangko",
-      "description": "Barangkali is really sah",
-      "price": "20000",
-      "stock": "20"
+      "id": "21321331",
+      "name": "dassasdsads",
+      "description": "ssdass",
+      "price": 22,
+      "stock": 99
+    }
+  ],
+  "logs": [
+    {
+      "id": "1",
+      "product_id": "8992745120650",
+      "type": "stock_in",
+      "quantity": 10,
+      "note": "Restocked due to high demand",
+      "date": "2024-11-22T10:00:00Z"
+    },
+    {
+      "id": "0e9b",
+      "product_id": "8992745120651",
+      "type": "stock_out",
+      "quantity": 20,
+      "note": "Restocking warehouse",
+      "date": "2024-11-22T14:00:00Z"
+    },
+    {
+      "id": "7252",
+      "product_id": "8992745120651",
+      "type": "stock_out",
+      "quantity": 20,
+      "note": "Restocking warehouse",
+      "date": "2024-11-22T14:00:00Z"
+    },
+    {
+      "id": "419b",
+      "product_id": "21321321321",
+      "type": "stock_out",
+      "quantity": 10,
+      "note": "tidak ada"
+    },
+    {
+      "id": "b6b3",
+      "product_id": "213213213212",
+      "type": "stock_out",
+      "quantity": 88,
+      "note": "stokout",
+      "date": "2024-11-23T16:55:34.968Z"
     }
   ]
 }

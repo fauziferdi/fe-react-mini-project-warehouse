@@ -44,16 +44,16 @@ const ListProductsComponent = () => {
 
   return (
     <div className="card mt-4">
-      <h1 className="text-center mb-2">Tabel Product {setSearchTerm}</h1>
+      <h1 className="text-center mb-2">Tabel Product </h1>
       <div className="table-responsive ms-4 me-4">
         <FormProductComponent
           setShowModal={setShowModal}
           showModal={showModal}
         />
         <div className="d-flex float-end mt-2 mb-2">
-          <div class="d-flex" role="search">
+          <div className="d-flex" role="search">
             <input
-              class="form-control me-2"
+              className="form-control me-2"
               type="search"
               placeholder="Search"
               aria-label="Search"

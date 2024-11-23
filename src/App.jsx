@@ -12,8 +12,7 @@ function App() {
         <Routes>
           <Route path="*" element={<ProductsComponent />} />
           <Route path="/products" element={<ProductsComponent />} />
-          <Route path="/stock-in" element={<StockComponent />} />
-          <Route path="/stock-out" element={<StockComponent />} />
+          <Route path="/stock" element={<StockComponent />} />
         </Routes>
       </div>
     </Router>

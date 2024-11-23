@@ -36,9 +36,17 @@ const FormProductComponent = ({ setShowModal, showModal }) => {
   }, [isUpdate, product]);
 
   const handleChange = (e) => {
+    const { id, value } = e.target;
+    let newValue = value;
+    if (id === "price" || id === "stock") {
+      newValue = parseFloat(value);
+      if (isNaN(newValue)) {
+        newValue = "";
+      }
+    }
     setInput({
       ...input,
-      [e.target.id]: e.target.value,
+      [id]: newValue,
     });
   };
 
@@ -100,7 +108,7 @@ const FormProductComponent = ({ setShowModal, showModal }) => {
                     id="id"
                     disabled={isUpdate}
                   />
-                  {!isUpdate && ( // Tombol Scan QR hanya ditampilkan saat menambah data
+                  {!isUpdate && (
                     <button
                       className="btn btn-secondary mt-3"
                       type="button"
