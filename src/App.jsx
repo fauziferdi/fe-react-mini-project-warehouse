@@ -1,8 +1,8 @@
-import "./App.css";
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavbarComponent from "./components/NavbarComponent";
-import HomeComponent from "./containers/HomeComponent";
+import ProductsComponent from "./containers/ProductsComponent";
+import StockComponent from "./containers/StockComponent";
 
 function App() {
   return (
@@ -10,7 +10,10 @@ function App() {
       <NavbarComponent />
       <div className="container">
         <Routes>
-          <Route path="*" element={<HomeComponent />} />
+          <Route path="*" element={<ProductsComponent />} />
+          <Route path="/products" element={<ProductsComponent />} />
+          <Route path="/stock-in" element={<StockComponent />} />
+          <Route path="/stock-out" element={<StockComponent />} />
         </Routes>
       </div>
     </Router>

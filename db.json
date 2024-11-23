@@ -6,16 +6,27 @@
       "description": "Ergonomic wireless mouse with high precision.",
       "price": 150000,
       "stock": 110
-    }
-  ],
-  "logs": [
+    },
     {
-      "id": 1,
-      "product_id": "8992745120650",
-      "type": "stock_in",
-      "quantity": 10,
-      "note": "Restocked due to high demand",
-      "date": "2024-11-22T10:00:00Z"
+      "id": "21321321321",
+      "name": "Penggaris Axio",
+      "description": "penggaris axio 22cim",
+      "price": "20000",
+      "stock": 10
+    },
+    {
+      "id": "9789967081345",
+      "name": "Penghapus Mahesa",
+      "description": "Penghawus color white",
+      "price": "1000",
+      "stock": "467"
+    },
+    {
+      "id": "9578545203541",
+      "name": "Barangko",
+      "description": "Barangkali is really sah",
+      "price": "20000",
+      "stock": "20"
     }
   ]
 }

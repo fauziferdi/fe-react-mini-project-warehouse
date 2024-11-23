@@ -1,7 +1,7 @@
 import React from "react";
 import ListProductsComponent from "../components/ListProductsComponent";
 
-const HomeComponent = () => {
+const ProductsComponent = () => {
   return (
     <>
       <ListProductsComponent />
@@ -9,4 +9,4 @@ const HomeComponent = () => {
   );
 };
 
-export default HomeComponent;
+export default ProductsComponent;
