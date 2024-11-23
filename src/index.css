@@ -1,3 +1,8 @@
 .btn-cstm {
-  width: 150px;
+  width: 100px;
 }
+
+.srch-cstm {
+  width: 200px !important;
+}
+

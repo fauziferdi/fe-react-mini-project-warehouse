@@ -70,8 +70,8 @@ const FormProductComponent = ({ setShowModal, showModal }) => {
   };
 
   const handleScan = (data) => {
-    setInput({ ...input, id: data }); // Update input.id dengan hasil scan
-    setShowScanner(false); // Sembunyikan scanner
+    setInput({ ...input, id: data }); 
+    setShowScanner(false); 
   };
 
   return (
@@ -106,7 +106,9 @@ const FormProductComponent = ({ setShowModal, showModal }) => {
                     onChange={handleChange}
                     className="form-control"
                     id="id"
+                    name="id"
                     disabled={isUpdate}
+                    required
                   />
                   {!isUpdate && (
                     <button
@@ -129,6 +131,8 @@ const FormProductComponent = ({ setShowModal, showModal }) => {
                     onChange={handleChange}
                     className="form-control"
                     id="name"
+                    name="name"
+                    required
                   />
                 </div>
                 <div className="mb-3">
@@ -140,7 +144,9 @@ const FormProductComponent = ({ setShowModal, showModal }) => {
                     value={input.description}
                     onChange={handleChange}
                     id="description"
+                    name="description"
                     rows="3"
+                    required
                   ></textarea>
                 </div>
                 <div className="mb-3">
@@ -153,6 +159,8 @@ const FormProductComponent = ({ setShowModal, showModal }) => {
                     onChange={handleChange}
                     className="form-control"
                     id="price"
+                    name="price"
+                    required
                   />
                 </div>
                 <div className="mb-3">
@@ -165,6 +173,8 @@ const FormProductComponent = ({ setShowModal, showModal }) => {
                     onChange={handleChange}
                     className="form-control"
                     id="stock"
+                    name="stock"
+                    required
                   />
                 </div>
                 <button type="submit" className="btn btn-primary">

@@ -9,10 +9,10 @@ const QrScannerComponent = ({ onScan }) => {
   };
 
   return (
-    <>
+    <div className="text-center">
       <BarcodeScannerComponent
-        width={500}
-        height={500}
+        width={400}
+        height={400}
         onUpdate={(err, result) => {
           if (result) {
             handleScan(result.text);
@@ -21,7 +21,7 @@ const QrScannerComponent = ({ onScan }) => {
           }
         }}
       />
-    </>
+    </div>
   );
 };
 

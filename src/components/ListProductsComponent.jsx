@@ -7,6 +7,7 @@ import {
 } from "../redux/slices/productSlice";
 import FormProductComponent from "./FormProductComponent";
 import QrScannerComponent from "./QrScannerComponent";
+import { BiPencil, BiTrash } from "react-icons/bi";
 
 const ListProductsComponent = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,13 @@ const ListProductsComponent = () => {
   }, [dispatch]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="d-flex justify-content-center align-items-center vh-100 ">
+        <div className="spinner-border text-primary fs-4" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    );
   }
 
   if (error) {
@@ -40,20 +47,21 @@ const ListProductsComponent = () => {
 
   const handleScan = (data) => {
     setSearchTerm(data);
+    setShowScanner(false);
   };
 
   return (
     <div className="card mt-4">
-      <h1 className="text-center mb-2">Tabel Product </h1>
+      <h1 className="text-center mb-4 mt-2 fw-bold ">Tabel Product </h1>
       <div className="table-responsive ms-4 me-4">
         <FormProductComponent
           setShowModal={setShowModal}
           showModal={showModal}
         />
-        <div className="d-flex float-end mt-2 mb-2">
+        <div className="d-flex float-end mt-2 mb-4">
           <div className="d-flex" role="search">
             <input
-              className="form-control me-2"
+              className="form-control me-2 srch-cstm"
               type="search"
               placeholder="Search"
               aria-label="Search"
@@ -77,7 +85,7 @@ const ListProductsComponent = () => {
 
         {showScanner && <QrScannerComponent onScan={handleScan} />}
 
-        <table className="table table-success table-striped table-hover">
+        <table className="table table-light table-striped table-hover mt-4">
           <thead>
             <tr>
               <th scope="col">No</th>
@@ -104,14 +112,18 @@ const ListProductsComponent = () => {
                       dispatch(currentProduct(data));
                       setShowModal(true);
                     }}
-                    className="btn btn-warning"
+                    className="btn btn-sm btn-warning my-1"
                     type="button"
-                  ></button>
+                  >
+                    <BiPencil />
+                  </button>
                   <button
                     onClick={() => dispatch(deleteProduct(data.id))}
-                    className="btn btn-danger"
+                    className="btn btn-danger btn-sm ms-2 my-1"
                     type="button"
-                  ></button>
+                  >
+                    <BiTrash />
+                  </button>
                 </td>
               </tr>
             ))}

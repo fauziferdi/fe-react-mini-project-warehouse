@@ -51,7 +51,6 @@ const initialState = {
   product: {},
   loading: false,
   error: null,
-  isSuccess: false,
   isUpdate: false,
 };
 
